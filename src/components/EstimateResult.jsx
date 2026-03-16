@@ -18,10 +18,47 @@ export default function EstimateResult({ state }) {
       <SectionHeader title="見積もり結果" color="yellow" />
 
       {state.clientName ? (
-        <div className="mb-6">
+        <div className="mb-5">
           <p className="text-sm font-medium text-black">{state.clientName}　<span className="text-gray-400 font-normal">{state.createdDate}</span></p>
         </div>
       ) : null}
+
+      {/* 合計（先頭） */}
+      <div className="border border-black p-5 space-y-3 mb-6">
+        <div className="flex justify-between items-center text-sm">
+          <span className="text-gray-600">合計工数</span>
+          <span className="font-mono">{formatHours(est.siteTotal)}</span>
+        </div>
+        <div className="flex justify-between items-center text-sm">
+          <span className="text-gray-600">
+            小計（{formatHours(est.siteTotal)} × ¥{state.hourlyRate.toLocaleString()}/時間）
+          </span>
+          <span className="font-mono">{formatCurrency(est.subtotal)}</span>
+        </div>
+        <div className="flex justify-between items-center text-sm">
+          <span className="text-gray-600">バッファ（{state.bufferRate}%）</span>
+          <span className="font-mono">{formatCurrency(est.bufferAmount)}</span>
+        </div>
+        <div className="flex justify-between items-center text-sm">
+          <span className="text-gray-600">テスト（{est.pageCount}ページ × ¥2,000）</span>
+          <span className="font-mono">{formatCurrency(est.testAmount)}</span>
+        </div>
+        {state.contentFillCount > 0 && (
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-gray-600">流し込み</span>
+            <span className="font-mono">{formatCurrency(est.contentFillAmount)}</span>
+          </div>
+        )}
+        <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
+          <span className="font-medium text-black">合計（税抜）</span>
+          <span className="text-2xl font-light font-mono text-black">{formatCurrency(est.total)}</span>
+        </div>
+        {est.hasSvgCanvas && (
+          <p className="text-xs text-gray-500 pt-1">
+            ※ SVG・Canvasアニメーションは別途お見積もりになります
+          </p>
+        )}
+      </div>
 
       {/* ページ別内訳 */}
       <div className="border border-gray-200 mb-4">
@@ -100,46 +137,9 @@ export default function EstimateResult({ state }) {
         )}
       </div>
 
-      {/* 合計 */}
-      <div className="border border-black p-5 space-y-3">
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-600">合計工数</span>
-          <span className="font-mono">{formatHours(est.siteTotal)}</span>
-        </div>
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-600">
-            小計（{formatHours(est.siteTotal)} × ¥{state.hourlyRate.toLocaleString()}/時間）
-          </span>
-          <span className="font-mono">{formatCurrency(est.subtotal)}</span>
-        </div>
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-600">バッファ（{state.bufferRate}%）</span>
-          <span className="font-mono">{formatCurrency(est.bufferAmount)}</span>
-        </div>
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-600">テスト（{est.pageCount}ページ × ¥2,000）</span>
-          <span className="font-mono">{formatCurrency(est.testAmount)}</span>
-        </div>
-        {state.contentFillCount > 0 && (
-          <div className="flex justify-between items-center text-sm">
-            <span className="text-gray-600">流し込み</span>
-            <span className="font-mono">{formatCurrency(est.contentFillAmount)}</span>
-          </div>
-        )}
-        <div className="border-t border-gray-200 pt-3 flex justify-between items-center">
-          <span className="font-medium text-black">合計（税抜）</span>
-          <span className="text-2xl font-light font-mono text-black">{formatCurrency(est.total)}</span>
-        </div>
-        {est.hasSvgCanvas && (
-          <p className="text-xs text-gray-500 pt-1">
-            ※ SVG・Canvasアニメーションは別途お見積もりになります
-          </p>
-        )}
-      </div>
-
       <button
         onClick={() => document.getElementById('estimate-copy')?.scrollIntoView({ behavior: 'smooth' })}
-        className="mt-4 w-full border border-black text-black text-sm py-3 hover:bg-black hover:text-white transition-colors cursor-pointer"
+        className="mt-2 w-full bg-sky-50 border border-sky-300 text-sky-700 font-medium text-sm py-3 hover:bg-sky-100 hover:border-sky-400 transition-colors cursor-pointer"
       >
         見積もりをコピー ↓
       </button>

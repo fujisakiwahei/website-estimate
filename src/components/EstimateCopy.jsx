@@ -27,20 +27,20 @@ export default function EstimateCopy({ state }) {
     lines.push('■ ページ別内訳')
     est.pageResults.forEach(({ page, hours }, i) => {
       const name = page.name || `ページ${i + 1}`
-      lines.push(`  ${name}（${getPageTypeLabel(page.type)}）：${formatHours(hours)}　${formatCurrency(hours * state.hourlyRate)}`)
-      if (page.formCount > 0) lines.push(`    └ フォーム ${page.formCount}件`)
+      lines.push(`・${name}（${getPageTypeLabel(page.type)}）：${formatHours(hours)}　${formatCurrency(hours * state.hourlyRate)}`)
+      if (page.formCount > 0) lines.push(`　└ フォーム ${page.formCount}件`)
     })
     lines.push('')
     lines.push('■ サイト全体')
     if (est.animationHours > 0) {
-      lines.push(`  アニメーション（${state.animations.filter(a => a !== 'svg_canvas').map(getAnimLabel).join('・')}）：${formatHours(est.animationHours)}　${formatCurrency(est.animationHours * state.hourlyRate)}`)
+      lines.push(`・アニメーション（${state.animations.filter(a => a !== 'svg_canvas').map(getAnimLabel).join('・')}）：${formatHours(est.animationHours)}　${formatCurrency(est.animationHours * state.hourlyRate)}`)
     }
-    if (state.wordpress) lines.push(`  WordPress：${formatHours(est.wordpressHours)}　${formatCurrency(est.wordpressHours * state.hourlyRate)}`)
-    if (state.customFieldCount > 0) lines.push(`  カスタムフィールド（${state.customFieldCount}タイプ）：${formatHours(est.customFieldHours)}　${formatCurrency(est.customFieldHours * state.hourlyRate)}`)
-    lines.push(`  テスト（${est.pageCount}ページ × ¥2,000）：${formatCurrency(est.testAmount)}`)
-    if (state.publishing) lines.push(`  公開作業：${formatHours(est.publishingHours)}　${formatCurrency(est.publishingHours * state.hourlyRate)}`)
-    if (state.publishing) lines.push(`  公開後テスト：${formatHours(est.postLaunchTestHours)}　${formatCurrency(est.postLaunchTestHours * state.hourlyRate)}`)
-    if (state.contentFillCount > 0) lines.push(`  流し込み（${state.contentFillCount}ページ）：${formatCurrency(est.contentFillAmount)}`)
+    if (state.wordpress) lines.push(`・WordPress：${formatHours(est.wordpressHours)}　${formatCurrency(est.wordpressHours * state.hourlyRate)}`)
+    if (state.customFieldCount > 0) lines.push(`・カスタムフィールド（${state.customFieldCount}タイプ）：${formatHours(est.customFieldHours)}　${formatCurrency(est.customFieldHours * state.hourlyRate)}`)
+    lines.push(`・テスト（${est.pageCount}ページ × ¥2,000）：${formatCurrency(est.testAmount)}`)
+    if (state.publishing) lines.push(`・公開作業：${formatHours(est.publishingHours)}　${formatCurrency(est.publishingHours * state.hourlyRate)}`)
+    if (state.publishing) lines.push(`・公開後テスト：${formatHours(est.postLaunchTestHours)}　${formatCurrency(est.postLaunchTestHours * state.hourlyRate)}`)
+    if (state.contentFillCount > 0) lines.push(`・流し込み（${state.contentFillCount}ページ）：${formatCurrency(est.contentFillAmount)}`)
     lines.push('')
     lines.push(`合計工数：${formatHours(est.siteTotal)}`)
     lines.push(`小計：${formatCurrency(est.subtotal)}`)
@@ -65,7 +65,7 @@ export default function EstimateCopy({ state }) {
 
   return (
     <section id="estimate-copy" className="pb-10">
-      <SectionHeader title="見積もり文コピー" color="yellow" />
+      <SectionHeader title="見積もり文" color="yellow" />
 
       <div className="flex flex-wrap gap-6 mb-5">
         <CheckOption
@@ -93,7 +93,7 @@ export default function EstimateCopy({ state }) {
 
       <button
         onClick={handleCopy}
-        className="w-full border border-black text-black text-sm py-3 hover:bg-black hover:text-white transition-colors cursor-pointer"
+        className="w-full bg-sky-50 border border-sky-300 text-sky-700 font-medium text-sm py-3 hover:bg-sky-100 hover:border-sky-400 transition-colors cursor-pointer"
       >
         {copied ? 'コピーしました！' : '見積もり文をコピー'}
       </button>

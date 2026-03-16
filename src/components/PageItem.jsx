@@ -19,10 +19,11 @@ const ANIMATIONS = [
 
 export { PAGE_TYPES, ANIMATIONS }
 
+const FORM_COUNTS = [0, 1, 2, 3, 4]
+
 export default function PageItem({ page, index, canRemove, dispatch }) {
   const update = (field) => (e) => {
-    const value = e.target.type === 'number' ? Number(e.target.value) : e.target.value
-    dispatch({ type: 'UPDATE_PAGE', id: page.id, field, value })
+    dispatch({ type: 'UPDATE_PAGE', id: page.id, field, value: e.target.value })
   }
 
   return (
@@ -34,7 +35,7 @@ export default function PageItem({ page, index, canRemove, dispatch }) {
         {canRemove && (
           <button
             onClick={() => dispatch({ type: 'REMOVE_PAGE', id: page.id })}
-            className="text-xs text-gray-400 hover:text-black transition-colors"
+            className="text-xs text-red-400 hover:text-red-600 transition-colors cursor-pointer"
           >
             削除
           </button>
@@ -73,13 +74,21 @@ export default function PageItem({ page, index, canRemove, dispatch }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Field label="フォーム数">
-          <input
-            type="number"
-            value={page.formCount}
-            onChange={update('formCount')}
-            min={0}
-            className="input"
-          />
+          <div className="flex gap-2 mt-1">
+            {FORM_COUNTS.map((n) => (
+              <label key={n} className="flex items-center gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name={`form-count-${page.id}`}
+                  value={n}
+                  checked={page.formCount === n}
+                  onChange={() => dispatch({ type: 'UPDATE_PAGE', id: page.id, field: 'formCount', value: n })}
+                  className="accent-black"
+                />
+                <span className="text-sm text-gray-700">{n}</span>
+              </label>
+            ))}
+          </div>
         </Field>
 
         {page.formCount >= 2 && (

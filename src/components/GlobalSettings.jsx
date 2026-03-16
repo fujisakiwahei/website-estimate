@@ -5,7 +5,7 @@ export default function GlobalSettings({ state, dispatch }) {
   }
 
   return (
-    <div className="space-y-5">
+    <div id="global-settings" className="space-y-5">
       <h2 className="text-sm font-semibold tracking-wide text-sky-900 bg-sky-50 border-l-4 border-sky-400 px-4 py-2.5 -mx-6">
         基本設定
       </h2>
@@ -23,7 +23,9 @@ export default function GlobalSettings({ state, dispatch }) {
           type="number"
           value={state.hourlyRate}
           onChange={set('hourlyRate')}
+          onFocus={(e) => e.target.select()}
           min={0}
+          inputMode="numeric"
           className="input"
         />
       </Field>
@@ -32,8 +34,10 @@ export default function GlobalSettings({ state, dispatch }) {
           type="number"
           value={state.bufferRate}
           onChange={set('bufferRate')}
+          onFocus={(e) => e.target.select()}
           min={0}
           max={100}
+          inputMode="numeric"
           className="input"
         />
       </Field>
@@ -42,7 +46,8 @@ export default function GlobalSettings({ state, dispatch }) {
           type="date"
           value={state.createdDate}
           onChange={set('createdDate')}
-          className="input"
+          className="input w-full"
+          style={{ maxWidth: '100%' }}
         />
       </Field>
       <Field label="流し込み単価（円/ページ）">
@@ -50,7 +55,9 @@ export default function GlobalSettings({ state, dispatch }) {
           type="number"
           value={state.contentFillRate}
           onChange={set('contentFillRate')}
+          onFocus={(e) => e.target.select()}
           min={0}
+          inputMode="numeric"
           className="input"
         />
       </Field>
