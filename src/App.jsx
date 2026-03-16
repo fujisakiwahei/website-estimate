@@ -5,11 +5,11 @@ import PageList from './components/PageList'
 import SiteOptions from './components/SiteOptions'
 import EstimateResult from './components/EstimateResult'
 import HearingText from './components/HearingText'
+import EstimateCopy from './components/EstimateCopy'
 
 const today = new Date().toISOString().slice(0, 10)
 
 const initialState = {
-  projectName: '',
   clientName: '',
   createdDate: today,
   hourlyRate: 5000,
@@ -19,14 +19,16 @@ const initialState = {
       id: 1,
       name: 'トップ',
       type: 'top',
-      animations: [],
       formCount: 0,
       formSameDesign: true,
     },
   ],
+  animations: [],
   wordpress: false,
   customFieldCount: 0,
   publishing: false,
+  contentFillCount: 0,
+  contentFillRate: 3000,
 }
 
 function reducer(state, action) {
@@ -42,7 +44,6 @@ function reducer(state, action) {
             id: Date.now(),
             name: '',
             type: 'sub_simple',
-            animations: [],
             formCount: 0,
             formSameDesign: true,
           },
@@ -58,16 +59,12 @@ function reducer(state, action) {
         ),
       }
     case 'TOGGLE_ANIMATION': {
-      const page = state.pages.find((p) => p.id === action.id)
-      const has = page.animations.includes(action.animation)
-      const updated = has
-        ? page.animations.filter((a) => a !== action.animation)
-        : [...page.animations, action.animation]
+      const has = state.animations.includes(action.animation)
       return {
         ...state,
-        pages: state.pages.map((p) =>
-          p.id === action.id ? { ...p, animations: updated } : p
-        ),
+        animations: has
+          ? state.animations.filter((a) => a !== action.animation)
+          : [...state.animations, action.animation],
       }
     }
     case 'SET_SITE_OPTION':
@@ -83,27 +80,31 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-6 py-8">
-          <h1 className="text-2xl font-medium tracking-tight text-black">
+        <div className="px-6 md:px-8 py-5 md:py-6">
+          <h1 className="text-xl md:text-2xl font-medium tracking-tight text-black">
             Web見積もりツール
           </h1>
-          <p className="text-sm text-gray-400 mt-1">Webサイトコーディング工数・金額自動計算</p>
+          <p className="text-xs md:text-sm text-gray-400 mt-0.5">Webサイトコーディング工数・金額自動計算</p>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
-        <GlobalSettings state={state} dispatch={dispatch} />
-        <PageList state={state} dispatch={dispatch} />
-        <SiteOptions state={state} dispatch={dispatch} />
-        <EstimateResult state={state} />
-        <HearingText state={state} />
-      </main>
+      <div className="flex flex-col md:flex-row">
+        {/* Sidebar */}
+        <aside className="w-full md:w-64 md:shrink-0 border-b md:border-b-0 md:border-r border-gray-200 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
+          <div className="p-6">
+            <GlobalSettings state={state} dispatch={dispatch} />
+          </div>
+        </aside>
 
-      <footer className="border-t border-gray-200 mt-20">
-        <div className="max-w-5xl mx-auto px-6 py-6 text-xs text-gray-400">
-          Web見積もりツール
-        </div>
-      </footer>
+        {/* Main content */}
+        <main className="flex-1 min-w-0 px-4 md:px-10 py-6 md:py-8 space-y-8 md:space-y-10">
+          <PageList state={state} dispatch={dispatch} />
+          <SiteOptions state={state} dispatch={dispatch} />
+          <EstimateResult state={state} />
+          <HearingText state={state} />
+          <EstimateCopy state={state} />
+        </main>
+      </div>
     </div>
   )
 }

@@ -25,10 +25,6 @@ export default function PageItem({ page, index, canRemove, dispatch }) {
     dispatch({ type: 'UPDATE_PAGE', id: page.id, field, value })
   }
 
-  const toggleAnimation = (anim) => {
-    dispatch({ type: 'TOGGLE_ANIMATION', id: page.id, animation: anim })
-  }
-
   return (
     <div className="border border-gray-200 p-5">
       <div className="flex items-center justify-between mb-4">
@@ -57,7 +53,7 @@ export default function PageItem({ page, index, canRemove, dispatch }) {
         </Field>
 
         <Field label="ページ種別">
-          <div className="flex gap-3 mt-1">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-1">
             {PAGE_TYPES.map((t) => (
               <label key={t.value} className="flex items-center gap-1.5 cursor-pointer">
                 <input
@@ -72,41 +68,6 @@ export default function PageItem({ page, index, canRemove, dispatch }) {
               </label>
             ))}
           </div>
-        </Field>
-      </div>
-
-      <div className="mb-4">
-        <Field label="アニメーション・インタラクション">
-          <div className="flex flex-wrap gap-2 mt-1">
-            {ANIMATIONS.map((a) => (
-              <label
-                key={a.value}
-                className={`flex items-center gap-1.5 px-3 py-1.5 border text-sm cursor-pointer transition-colors ${
-                  page.animations.includes(a.value)
-                    ? 'border-black bg-black text-white'
-                    : 'border-gray-200 text-gray-600 hover:border-gray-400'
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={page.animations.includes(a.value)}
-                  onChange={() => toggleAnimation(a.value)}
-                  className="sr-only"
-                />
-                {a.label}
-                {a.hours === null ? (
-                  <span className="text-xs opacity-60">別途</span>
-                ) : (
-                  <span className="text-xs opacity-60">{a.hours}h</span>
-                )}
-              </label>
-            ))}
-          </div>
-          {page.animations.includes('svg_canvas') && (
-            <p className="text-xs text-gray-400 mt-2">
-              ※ SVG・Canvasアニメーションは別途お見積もりになります
-            </p>
-          )}
         </Field>
       </div>
 

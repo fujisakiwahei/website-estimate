@@ -15,7 +15,7 @@ export default function HearingText({ state }) {
 
   return (
     <section className="pb-10">
-      <SectionHeader title="ヒアリング文" />
+      <SectionHeader title="ヒアリング文" color="green" />
       <div className="border border-gray-200 p-5 bg-gray-50">
         <pre className="text-sm text-gray-700 whitespace-pre-wrap font-sans leading-relaxed">
           {text}
@@ -32,9 +32,9 @@ export default function HearingText({ state }) {
 }
 
 function generateHearingText(state) {
-  const project = state.projectName ? `\n件名：${state.projectName}のお見積もりについて\n` : ''
+  const client = state.clientName ? `\n宛先：${state.clientName}\n` : ''
 
-  return `【Webサイト制作のご確認事項】${project}
+  return `【Webサイト制作のご確認事項】${client}
 お見積もりにあたり、以下の点を確認させてください。
 
 ■ ページ構成
@@ -43,7 +43,7 @@ function generateHearingText(state) {
 
 ■ アニメーション・インタラクション
 ・スクロールアニメーション、パララックス、ページトランジションなど
-　ご希望の演出があればページごとにお知らせください。
+　ご希望の演出があればお知らせください。
 
 ■ フォーム
 ・お問い合わせフォームや予約フォームの数を教えてください。
