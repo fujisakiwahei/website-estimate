@@ -28,7 +28,7 @@ export default function PageItem({ page, index, canRemove, dispatch }) {
   return (
     <div className="border border-gray-200 p-5">
       <div className="flex items-center justify-between mb-4">
-        <span className="text-xs font-medium text-gray-400 uppercase tracking-widest">
+        <span className="text-sm font-semibold text-sky-500 uppercase tracking-widest">
           Page {index + 1}
         </span>
         {canRemove && (

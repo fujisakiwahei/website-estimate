@@ -80,11 +80,14 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <header className="border-b border-gray-200">
-        <div className="px-6 md:px-8 py-5 md:py-6">
-          <h1 className="text-xl md:text-2xl font-medium tracking-tight text-black">
-            Web見積もりツール
-          </h1>
-          <p className="text-xs md:text-sm text-gray-400 mt-0.5">Webサイトコーディング工数・金額自動計算</p>
+        <div className="px-6 md:px-8 py-5 md:py-6 flex items-center gap-4">
+          <img src="/icon-192.png" alt="" className="w-10 h-10 object-contain" />
+          <div>
+            <h1 className="text-xl md:text-2xl font-medium tracking-tight text-black">
+              Web見積もりツール
+            </h1>
+            <p className="text-xs md:text-sm text-gray-400 mt-0.5">Webサイトコーディング工数・金額自動計算</p>
+          </div>
         </div>
       </header>
 

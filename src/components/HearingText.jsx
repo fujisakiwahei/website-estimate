@@ -23,7 +23,7 @@ export default function HearingText({ state }) {
       </div>
       <button
         onClick={handleCopy}
-        className="mt-3 w-full border border-gray-300 text-gray-600 text-sm py-3 hover:border-black hover:text-black transition-colors"
+        className="mt-3 w-full border border-gray-300 text-gray-600 text-sm py-3 hover:border-black hover:text-black transition-colors cursor-pointer"
       >
         {copied ? 'コピーしました！' : 'ヒアリング文をコピー'}
       </button>

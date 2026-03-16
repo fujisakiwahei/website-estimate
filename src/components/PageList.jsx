@@ -18,7 +18,7 @@ export default function PageList({ state, dispatch }) {
       </div>
       <button
         onClick={() => dispatch({ type: 'ADD_PAGE' })}
-        className="mt-4 w-full border border-dashed border-gray-300 text-gray-400 text-sm py-3 hover:border-black hover:text-black transition-colors"
+        className="mt-4 w-full bg-sky-50 border border-sky-300 text-sky-700 font-medium text-sm py-3 hover:bg-sky-100 hover:border-sky-400 transition-colors cursor-pointer"
       >
         ＋ ページを追加
       </button>

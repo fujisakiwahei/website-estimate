@@ -93,7 +93,7 @@ export default function EstimateCopy({ state }) {
 
       <button
         onClick={handleCopy}
-        className="w-full border border-black text-black text-sm py-3 hover:bg-black hover:text-white transition-colors"
+        className="w-full border border-black text-black text-sm py-3 hover:bg-black hover:text-white transition-colors cursor-pointer"
       >
         {copied ? 'コピーしました！' : '見積もり文をコピー'}
       </button>

@@ -6,9 +6,9 @@ export default function GlobalSettings({ state, dispatch }) {
 
   return (
     <div className="space-y-5">
-      <div>
-        <p className="text-xs font-medium uppercase tracking-widest text-gray-400 mb-3">基本設定</p>
-      </div>
+      <h2 className="text-sm font-semibold tracking-wide text-sky-900 bg-sky-50 border-l-4 border-sky-400 px-4 py-2.5 -mx-6">
+        基本設定
+      </h2>
       <Field label="クライアント名">
         <input
           type="text"
@@ -73,8 +73,8 @@ export function SectionHeader({ title, color = 'sky' }) {
 
 export function Field({ label, children }) {
   return (
-    <div className="flex flex-col gap-1">
-      <label className="text-xs text-gray-500">{label}</label>
+    <div className="flex flex-col gap-1.5">
+      <label className="text-sm font-medium text-black">{label}</label>
       {children}
     </div>
   )

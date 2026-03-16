@@ -139,7 +139,7 @@ export default function EstimateResult({ state }) {
 
       <button
         onClick={() => document.getElementById('estimate-copy')?.scrollIntoView({ behavior: 'smooth' })}
-        className="mt-4 w-full border border-black text-black text-sm py-3 hover:bg-black hover:text-white transition-colors"
+        className="mt-4 w-full border border-black text-black text-sm py-3 hover:bg-black hover:text-white transition-colors cursor-pointer"
       >
         見積もりをコピー ↓
       </button>
