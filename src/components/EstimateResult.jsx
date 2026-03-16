@@ -60,6 +60,13 @@ export default function EstimateResult({ state }) {
         )}
       </div>
 
+      <button
+        onClick={() => document.getElementById('estimate-copy')?.scrollIntoView({ behavior: 'smooth' })}
+        className="w-full bg-sky-50 border border-sky-300 text-sky-700 font-medium text-sm py-3 hover:bg-sky-100 hover:border-sky-400 transition-colors cursor-pointer mb-6"
+      >
+        見積もりをコピー ↓
+      </button>
+
       {/* ページ別内訳 */}
       <div className="border border-gray-200 mb-4">
         <div className="px-5 py-3 border-b border-gray-100 bg-gray-50">
@@ -137,12 +144,6 @@ export default function EstimateResult({ state }) {
         )}
       </div>
 
-      <button
-        onClick={() => document.getElementById('estimate-copy')?.scrollIntoView({ behavior: 'smooth' })}
-        className="mt-2 w-full bg-sky-50 border border-sky-300 text-sky-700 font-medium text-sm py-3 hover:bg-sky-100 hover:border-sky-400 transition-colors cursor-pointer"
-      >
-        見積もりをコピー ↓
-      </button>
     </section>
   )
 }
