@@ -2,7 +2,7 @@ import { Field } from './GlobalSettings'
 
 const PAGE_TYPES = [
   { value: 'top', label: 'トップ', hours: 8 },
-  { value: 'sub_simple', label: '下層（シンプル）', hours: 2.5 },
+  { value: 'sub_simple', label: '下層', hours: 2.5 },
   { value: 'sub_complex', label: '下層（複雑）', hours: 5 },
 ]
 
