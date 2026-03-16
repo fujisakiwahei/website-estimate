@@ -1,0 +1,18 @@
+.input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  background: white;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+
+.input:focus {
+  border-color: #111111;
+}
+
+.input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
